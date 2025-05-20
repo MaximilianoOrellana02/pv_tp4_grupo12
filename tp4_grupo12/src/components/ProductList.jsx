@@ -1,6 +1,7 @@
 import React from "react";
-
 import ProductItem from "./ProductItem.jsx";
+// No importamos Alert porque no lo vamos a usar directamente aquí.
+// Si en el futuro quieres usar un ícono, deberás instalar lucide-react y descomentar la línea.
 
 const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
   return (
@@ -15,6 +16,7 @@ const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
             <th>Descuento</th>
             <th>Precio con Descuento</th>
             <th>Stock</th>
+            <th>Acciones</th> {/* Asegúrate de tener esta columna para los botones */}
           </tr>
         </thead>
         <tbody>
@@ -26,7 +28,16 @@ const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
               onDelete={onDeleteProducto}
             />
           ))}
-          {productos.length === 0 && (<tr><td colSpan={6} style={{textAlign: 'center', color: 'grey'}}><Alert className="inline-block"/> No hay productos en la lista.</td></tr>)}
+          {/* Mensaje si no hay productos en la lista */}
+          {productos.length === 0 && (
+            <tr>
+              {/* ColSpan debe coincidir con el número total de columnas en tu tabla */}
+              <td colSpan={7} style={{ textAlign: 'center', color: 'grey' }}>
+                {/* Aquí solo texto, sin el componente Alert */}
+                No hay productos en la lista.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
