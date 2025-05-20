@@ -1,7 +1,5 @@
 import React from "react";
 import ProductItem from "./ProductItem.jsx";
-// No importamos Alert porque no lo vamos a usar directamente aquí.
-// Si en el futuro quieres usar un ícono, deberás instalar lucide-react y descomentar la línea.
 
 const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
   return (
@@ -33,7 +31,7 @@ const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
             <tr>
               {/* ColSpan debe coincidir con el número total de columnas en tu tabla */}
               <td colSpan={7} style={{ textAlign: 'center', color: 'grey' }}>
-                {/* Aquí solo texto, sin el componente Alert */}
+                
                 No hay productos en la lista.
               </td>
             </tr>
