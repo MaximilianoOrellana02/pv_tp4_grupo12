@@ -2,7 +2,7 @@ import React from "react";
 
 import ProductItem from "./ProductItem.jsx";
 
-const ProductList = ({ productos, onEditProducto }) => {
+const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
   return (
     <div>
       <h2>Lista de Productos</h2>
@@ -23,9 +23,10 @@ const ProductList = ({ productos, onEditProducto }) => {
               key={producto.id}
               producto={producto}
               onEdit={onEditProducto}
-              // onDelete={onDelete}
+              onDelete={onDeleteProducto}
             />
           ))}
+          {productos.length === 0 && (<tr><td colSpan={6} style={{textAlign: 'center', color: 'grey'}}><Alert className="inline-block"/> No hay productos en la lista.</td></tr>)}
         </tbody>
       </table>
     </div>

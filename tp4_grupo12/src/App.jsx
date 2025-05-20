@@ -20,12 +20,18 @@ function App() {
     );
   }, []);
 
+ const eliminarProducto = useCallback((id) => {
+    setProductos((prevProductos) => prevProductos.filter((producto) => producto.id !== id)
+    );
+  }, []);
+
   return (
     <>
       <div>
         <h1>Lista de Productos</h1>
         <ProductForm onAddProducto={agregarProducto} />
-        <ProductList productos={productos} onEditProducto={editarProducto} />
+        <ProductList productos={productos} onEditProducto={editarProducto}
+        onDeleteProducto={eliminarProducto} />
       </div>
     </>
   );

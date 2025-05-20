@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ProductItem = ({ producto, onEdit }) => {
+const ProductItem = ({ producto, onEdit, onDelete}) => {
   const [editando, setEditando] = useState(false);
   const [descripcion, setDescripcion] = useState(producto.descripcion);
   const [precioUnitario, setPrecioUnitario] = useState(producto.precioUnitario);
@@ -65,7 +65,11 @@ const ProductItem = ({ producto, onEdit }) => {
         ) : (
           <button onClick={handleEditClick}>Editar</button>
         )}
-        <button>Eliminar</button>
+          <button onClick={() => {  
+          if (window.confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+            onDelete(producto.id); 
+          }
+        }}>Eliminar</button>
       </td>
     </tr>
   );
