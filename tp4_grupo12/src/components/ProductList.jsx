@@ -5,9 +5,9 @@ import "./ProductList.css";
 
 const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
   return (
-    <div>
+    <div className="container">
       <h2>Lista de Productos</h2>
-      <table border={1}>
+      <table className="table">
         <thead>
           <tr>
             <th>ID</th>

@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="App">
         <h1>Lista de Productos</h1>
         <SearchBar searchTerm={searchTerm} onSearch={buscarProducto} />
         <ProductForm

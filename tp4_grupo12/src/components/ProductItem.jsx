@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./ProductItem.css";
 
-const ProductItem = ({ producto, onEdit, onDelete}) => {
+const ProductItem = ({ producto, onEdit, onDelete }) => {
   const [editando, setEditando] = useState(false);
   const [descripcion, setDescripcion] = useState(producto.descripcion);
   const [precioUnitario, setPrecioUnitario] = useState(producto.precioUnitario);
@@ -55,7 +55,8 @@ const ProductItem = ({ producto, onEdit, onDelete}) => {
           producto.precioUnitario
         )}
       </td>
-      <td>{editando ? (
+      <td>
+        {editando ? (
           <input
             type="number"
             value={descuento}
@@ -63,9 +64,11 @@ const ProductItem = ({ producto, onEdit, onDelete}) => {
           />
         ) : (
           producto.descuento
-        )}</td>
+        )}
+      </td>
       <td>{producto.precioConDescuento}</td>
-      <td>{editando ? (
+      <td>
+        {editando ? (
           <input
             type="number"
             value={stock}
@@ -73,21 +76,37 @@ const ProductItem = ({ producto, onEdit, onDelete}) => {
           />
         ) : (
           producto.stock
-        )}</td>
-      <td>
+        )}
+      </td>
+      <td className="acciones">
         {editando ? (
           <>
-            <button onClick={handleSave}>Guardar</button>
-            <button onClick={handleCancel}>Cancelar</button>
+            <button onClick={handleSave} className="edit">
+              Guardar
+            </button>
+            <button onClick={handleCancel} className="edit">
+              Cancelar
+            </button>
           </>
         ) : (
-          <button onClick={handleEditClick}>Editar</button>
+          <button onClick={handleEditClick} className="edit">
+            Editar
+          </button>
         )}
-          <button onClick={() => {  
-          if (window.confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-            onDelete(producto.id); 
-          }
-        }}>Eliminar</button>
+        <button
+          onClick={() => {
+            if (
+              window.confirm(
+                "¿Estás seguro de que quieres eliminar este producto?"
+              )
+            ) {
+              onDelete(producto.id);
+            }
+          }}
+          className="eliminar"
+        >
+          Eliminar
+        </button>
       </td>
     </tr>
   );
