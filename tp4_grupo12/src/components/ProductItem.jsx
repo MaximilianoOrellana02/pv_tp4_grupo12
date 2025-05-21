@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "./ProductItem.css";
+
 const ProductItem = ({ producto, onEdit, onDelete}) => {
   const [editando, setEditando] = useState(false);
   const [descripcion, setDescripcion] = useState(producto.descripcion);
