@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 
 import "./App.css";
 
@@ -7,29 +7,28 @@ import ProductForm from "./components/ProductForm.jsx";
 import SearchBar from "./components/Searchbar.jsx";
 
 function App() {
-  const [productos, setProductos] = useState([]);
+  const [productos, setProductos] = useState([
+    { id: "1", descripcion: "Laptop Gamer", precioUnitario: 1500 },
+    { id: "2", descripcion: "Smartphone Pro", precioUnitario: 1000 },
+    { id: "3", descripcion: "Auriculares", precioUnitario: 200 },
+    { id: "4", descripcion: "Monitor 4K", precioUnitario: 800 },
+    { id: "5", descripcion: "Teclado Mecánico", precioUnitario: 120 },
+  ]);
 
   useEffect(() => {
     console.log("Lista de productos actualizada:", productos);
   }, [productos]); //Se ejecuta cada vez que la lista cambia
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [productosFiltrados, setProductosFiltrados] = useState(productos);
 
-  useEffect(() => {
-    if (!searchTerm.trim()) {
-      setProductosFiltrados(productos);
-    } else {
-      const filtrados = productos.filter(
-        (producto) =>
-          producto.descripcion
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()) ||
-          producto.id.includes(searchTerm)
-      );
+  const productosFiltrados = useMemo(() => {
+    if (!searchTerm.trim()) return productos;
 
-      setProductosFiltrados(filtrados);
-    }
+    return productos.filter(
+      (producto) =>
+        producto.descripcion.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        producto.id.includes(searchTerm)
+    );
   }, [productos, searchTerm]);
 
   const buscarProducto = useCallback((termino) => {
