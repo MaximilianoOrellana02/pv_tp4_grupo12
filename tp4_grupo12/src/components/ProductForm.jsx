@@ -31,54 +31,67 @@ const ProductForm = ({ onAddProducto }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Agregar Producto</h2>
-      <label>ID:</label>
-      <input
-        type="text"
-        name="id"
-        value={producto.id}
-        onChange={handleChange}
-        required
-      />
+    <form onSubmit={handleSubmit} className="product-form">
+      <div className="form-grid">
+        <div>
+          <label>ID:</label>
+          <input
+            type="text"
+            name="id"
+            value={producto.id}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <label>Descripción:</label>
-      <input
-        type="text"
-        name="descripcion"
-        value={producto.descripcion}
-        onChange={handleChange}
-        required
-      />
+        <div>
+          <label>Descripción:</label>
+          <input
+            type="text"
+            name="descripcion"
+            value={producto.descripcion}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <label>Precio Unitario:</label>
-      <input
-        type="number"
-        name="precioUnitario"
-        value={producto.precioUnitario}
-        onChange={handleChange}
-        required
-      />
+        <div>
+          <label>Precio Unitario:</label>
+          <input
+            type="number"
+            name="precioUnitario"
+            value={producto.precioUnitario}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <label>Descuento (%):</label>
-      <input
-        type="number"
-        name="descuento"
-        value={producto.descuento}
-        onChange={handleChange}
-        required
-      />
+        <div>
+          <label>Descuento (%):</label>
+          <input
+            type="number"
+            name="descuento"
+            value={producto.descuento}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <label>Stock:</label>
-      <input
-        type="number"
-        name="stock"
-        value={producto.stock}
-        onChange={handleChange}
-        required
-      />
+        <div>
+          <label>Stock:</label>
+          <input
+            type="number"
+            name="stock"
+            value={producto.stock}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div>
 
-      <button type="submit">Agregar Producto</button>
+      <button type="submit" className="btn-agregar">
+        Agregar Producto
+      </button>
     </form>
   );
 };
