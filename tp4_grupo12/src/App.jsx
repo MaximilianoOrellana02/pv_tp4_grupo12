@@ -1,15 +1,40 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import "./App.css";
 
 import ProductList from "./components/ProductList.jsx";
 import ProductForm from "./components/ProductForm.jsx";
+import SearchBar from "./components/Searchbar.jsx";
 
 function App() {
   const [productos, setProductos] = useState([]);
 
-  const agregarProducto = useCallback((nuevoProducto) => {
-    setProductos((prevProductos) => [...prevProductos, nuevoProducto]);
+  useEffect(() => {
+    console.log("Lista de productos actualizada:", productos);
+  }, [productos]); //Se ejecuta cada vez que la lista cambia
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [productosFiltrados, setProductosFiltrados] = useState(productos);
+
+  useEffect(() => {
+    if (!searchTerm.trim()) {
+      setProductosFiltrados(productos);
+    } else {
+      const filtrados = productos.filter(
+        (producto) =>
+          producto.descripcion
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          producto.id.includes(searchTerm)
+      );
+
+      setProductosFiltrados(filtrados);
+    }
+  }, [productos, searchTerm]);
+
+  const buscarProducto = useCallback((termino) => {
+    console.log("Valor ingresado en barra de búsqueda:", termino);
+    setSearchTerm(termino.trim());
   }, []);
 
   const editarProducto = useCallback((id, datosActualizados) => {
@@ -20,8 +45,9 @@ function App() {
     );
   }, []);
 
- const eliminarProducto = useCallback((id) => {
-    setProductos((prevProductos) => prevProductos.filter((producto) => producto.id !== id)
+  const eliminarProducto = useCallback((id) => {
+    setProductos((prevProductos) =>
+      prevProductos.filter((producto) => producto.id !== id)
     );
   }, []);
 
@@ -29,9 +55,17 @@ function App() {
     <>
       <div>
         <h1>Lista de Productos</h1>
-        <ProductForm onAddProducto={agregarProducto} />
-        <ProductList productos={productos} onEditProducto={editarProducto}
-        onDeleteProducto={eliminarProducto} />
+        <SearchBar searchTerm={searchTerm} onSearch={buscarProducto} />
+        <ProductForm
+          onAddProducto={(nuevoProducto) => {
+            setProductos((prevProductos) => [...prevProductos, nuevoProducto]);
+          }}
+        />
+        <ProductList
+          productos={productosFiltrados}
+          onEditProducto={editarProducto}
+          onDeleteProducto={eliminarProducto}
+        />
       </div>
     </>
   );

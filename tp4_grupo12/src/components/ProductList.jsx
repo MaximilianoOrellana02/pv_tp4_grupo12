@@ -1,5 +1,5 @@
 import React from "react";
-import ProductItem from "./ProductItem.jsx";
+import ProductItem from "./ProductItem";
 
 const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
   return (
@@ -14,7 +14,7 @@ const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
             <th>Descuento</th>
             <th>Precio con Descuento</th>
             <th>Stock</th>
-            <th>Acciones</th> {/* Asegúrate de tener esta columna para los botones */}
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -26,16 +26,6 @@ const ProductList = ({ productos, onEditProducto, onDeleteProducto }) => {
               onDelete={onDeleteProducto}
             />
           ))}
-          {/* Mensaje si no hay productos en la lista */}
-          {productos.length === 0 && (
-            <tr>
-              {/* ColSpan debe coincidir con el número total de columnas en tu tabla */}
-              <td colSpan={7} style={{ textAlign: 'center', color: 'grey' }}>
-                
-                No hay productos en la lista.
-              </td>
-            </tr>
-          )}
         </tbody>
       </table>
     </div>
