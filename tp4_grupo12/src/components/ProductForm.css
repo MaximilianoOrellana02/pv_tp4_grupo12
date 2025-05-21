@@ -1,0 +1,55 @@
+.product-form {
+  max-width: 80%;
+  margin: auto;
+
+  padding: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  gap: 10px;
+}
+
+.form-grid div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-grid div input {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.btn-agregar {
+  padding: 15px 30px;
+  margin: 20px auto;
+  font-size: 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-agregar:hover {
+  transform: scale(1.07);
+  transition: all 0.3s ease;
+}
+
+.btn-agregar:active {
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
