@@ -7,13 +7,7 @@ import ProductForm from "./components/ProductForm.jsx";
 import SearchBar from "./components/Searchbar.jsx";
 
 function App() {
-  const [productos, setProductos] = useState([
-    { id: "1", descripcion: "Laptop Gamer", precioUnitario: 1500 },
-    { id: "2", descripcion: "Smartphone Pro", precioUnitario: 1000 },
-    { id: "3", descripcion: "Auriculares", precioUnitario: 200 },
-    { id: "4", descripcion: "Monitor 4K", precioUnitario: 800 },
-    { id: "5", descripcion: "Teclado Mecánico", precioUnitario: 120 },
-  ]);
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
     console.log("Lista de productos actualizada:", productos);

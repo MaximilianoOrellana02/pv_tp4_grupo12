@@ -53,9 +53,25 @@ const ProductItem = ({ producto, onEdit, onDelete}) => {
           producto.precioUnitario
         )}
       </td>
-      <td>{producto.descuento}</td>
+      <td>{editando ? (
+          <input
+            type="number"
+            value={descuento}
+            onChange={(e) => setDescuento(Number(e.target.value))}
+          />
+        ) : (
+          producto.descuento
+        )}</td>
       <td>{producto.precioConDescuento}</td>
-      <td>{producto.stock}</td>
+      <td>{editando ? (
+          <input
+            type="number"
+            value={stock}
+            onChange={(e) => setStock(Number(e.target.value))}
+          />
+        ) : (
+          producto.stock
+        )}</td>
       <td>
         {editando ? (
           <>
